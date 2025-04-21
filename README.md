@@ -79,19 +79,15 @@ anime_df['aired'] = anime_df['aired'].fillna(method='ffill')
 ```python
 anime_df['genre'] = anime_df['genre'].str.strip("[]").str.replace("'", "").str.split(', ').apply(lambda x: [g.lower().replace(' ', '_') for g in x])
 ```
-12. **Truncate Synopsis**: Truncate the 'synopsis' column to the first 200 characters and append '...' to indicate truncation.
-```python
-anime_df['synopsis'] = anime_df['synopsis'].str.slice(0, 200) + '...'
-```
-13. **Rename Columns**: Rename columns for clarity.
+12. **Rename Columns**: Rename columns for clarity.
 ```python
 anime_df.rename(columns={'uid': 'anime_id', 'aired': 'released_date'}, inplace=True)
 ```
-14. **Convert Column Names**: Convert all column names to uppercase for consistency.
+13. **Convert Column Names**: Convert all column names to uppercase for consistency.
 ```python
 anime_df.columns = anime_df.columns.str.upper()
 ```
-15. **Final Dataset Info**: Print cleaned dataset information, including data types and non-null counts.
+14. **Final Dataset Info**: Print cleaned dataset information, including data types and non-null counts.
 ```python
 print("Cleaned Dataset Info:")
 anime_df.info()
@@ -101,6 +97,13 @@ You can run the script to clean the dataset and view the cleaned DataFrame. Make
 
 ```python
 anime_df = pd.read_csv("C:/Users/dheni/Downloads/anime.csv")
+```
+## Saving the Cleaned Dataset
+After cleaning and preprocessing the dataset, you can save the cleaned DataFrame to a CSV file using the following code:
+```python
+cleaned_file_path = "C:/Users/dheni/Downloads/cleaned_anime_data.csv" 
+anime_df.to_csv(cleaned_file_path, index=False)
+print(f"Cleaned dataset saved to: {cleaned_file_path}")
 ```
 ## Conclusion
 This task demonstrates the process of cleaning and preprocessing a dataset for analysis. The cleaned dataset can now be used for further analysis, visualization, or machine learning tasks.
